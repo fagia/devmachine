@@ -1,0 +1,10 @@
+---
+- name: Check current locale configuration
+  command: "localectl status"
+  register: localectl_status
+  changed_when: False
+
+- name: Set configured locale for the keyboard
+  command: "localectl set-keymap {{ params.vm.keyboard_locale }}"
+  become: True
+  when: "'VC Keymap: {{ params.vm.keyboard_locale }}' not in localectl_status.stdout"

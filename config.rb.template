@@ -8,9 +8,10 @@ PARAMS = {
     fullname: "", # full user name
     email: ""     # e-mail address
   },
-  vm: { # hardware configuration for the VM, raise as much as needed
+  vm: { # hardware configuration for the VM
     cpus: 2,
     memory: 2048,
-    vram: 12
+    vram: 12,
+    keyboard_locale: "it"
   }
 }

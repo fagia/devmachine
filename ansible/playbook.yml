@@ -4,6 +4,7 @@
   hosts: all
   tasks:
     - import_tasks: tasks/install-roles.yml
+    - import_tasks: tasks/setup-locale.yml
     - import_tasks: tasks/create-user.yml
     - import_tasks: tasks/install-java.yml
     - import_tasks: tasks/install-mvn.yml
