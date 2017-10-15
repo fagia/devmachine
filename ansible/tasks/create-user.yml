@@ -1,0 +1,57 @@
+---
+- name: Retrieve 'developers' group data
+  command: getent group developers
+  register: getent_group
+  changed_when: False
+  failed_when: False
+
+- name: Create 'developers' group
+  group: name=developers state=present
+  when: getent_group.rc != 0
+  become: True
+
+- name: Retrieve user data
+  command: getent passwd {{ params.user.username }}
+  register: getent_passwd
+  changed_when: False
+  failed_when: False
+
+- name: Create development user
+  user: name={{ params.user.username }} password={{ params.user.password | password_hash('sha512') }} shell=/bin/bash
+  when: getent_passwd.rc != 0
+  become: True
+
+- name: Set groups for the development user
+  user: name={{ params.user.username }} groups=developers,sudo
+  become: True
+
+- name: Set development user name
+  command: chfn -f '{{ params.user.fullname }}' {{ params.user.username }}
+  when: getent_passwd.rc != 0 or params.user.fullname not in getent_passwd.stdout
+  become: True
+
+- name: Symlink '/home/ubuntu' to the user home for retrocompatibility
+  file: src=/home/{{ params.user.username }} dest=/home/ubuntu state=link
+  become: True
+
+- name: Disable GUI login as user 'vagrant'
+  blockinfile:
+    dest: /var/lib/AccountsService/users/vagrant
+    block: |
+      [User]
+      SystemAccount=true
+    marker: ""
+    create: yes
+  changed_when: False
+  become: True
+
+- name: Disable GUI login as guest
+  blockinfile:
+    dest: /etc/lightdm/lightdm.conf.d/50-no-guest.conf
+    block: |
+      [Seat:*]
+      allow-guest=false
+    marker: ""
+    create: yes
+  changed_when: False
+  become: True

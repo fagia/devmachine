@@ -1,0 +1,5 @@
+/ansible/roles/
+/config.rb
+/*.log
+/.vagrant/
+playbook.retry

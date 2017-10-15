@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+PARAMS = {
+  user: {
+    username: "", # username to create for the machine (not ubuntu). Do not use any special chars, use only letters.
+    password: "", # password to login into the machine
+    fullname: "", # full user name
+    email: ""     # e-mail address
+  },
+  vm: { # hardware configuration for the VM, raise as much as needed
+    cpus: 2,
+    memory: 2048,
+    vram: 12
+  }
+}

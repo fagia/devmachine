@@ -1,0 +1,16 @@
+---
+
+- name: Provisioning
+  hosts: all
+  tasks:
+    - import_tasks: tasks/install-roles.yml
+    - import_tasks: tasks/create-user.yml
+    - import_tasks: tasks/install-java.yml
+    - import_tasks: tasks/install-mvn.yml
+    - import_tasks: tasks/install-gradle.yml
+    - name: Install Intellij
+      include_role:
+        name: gantsign.intellij
+      vars:
+        intellij_default_jdk_home: /usr/lib/jvm/java-8-oracle
+        intellij_default_maven_home: /usr/share/maven
