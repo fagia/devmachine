@@ -1,0 +1,14 @@
+---
+
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+  become: True
+
+- name: Clean apt cache
+  command: "apt clean"
+  become: True
+
+- name: Autoremove old packages
+  command: "apt autoremove --purge -y"
+  become: True

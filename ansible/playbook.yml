@@ -9,6 +9,7 @@
     - import_tasks: tasks/install-java.yml
     - import_tasks: tasks/install-mvn.yml
     - import_tasks: tasks/install-gradle.yml
+    - import_tasks: tasks/upgrade-os-packages.yml
     - name: Install Intellij
       include_role:
         name: gantsign.intellij

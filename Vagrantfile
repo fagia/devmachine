@@ -32,6 +32,7 @@ Vagrant.configure("2") do |config|
     vb.memory = PARAMS[:vm][:memory]
 	vb.cpus = PARAMS[:vm][:cpus]
 	vb.customize ["modifyvm", :id, "--vram", PARAMS[:vm][:vram]]
+	vb.customize ["modifyvm", :id, "--clipboard", PARAMS[:vm][:clipboard]]
   end
 
   config.vm.provision "ansible_local" do |ansible|

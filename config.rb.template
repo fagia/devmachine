@@ -12,6 +12,7 @@ PARAMS = {
     cpus: 2,
     memory: 2048,
     vram: 12,
+    clipboard: "bidirectional",
     keyboard_locale: "it"
   }
 }
