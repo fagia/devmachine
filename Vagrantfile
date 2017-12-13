@@ -3,6 +3,7 @@
 
 required_plugins = %w(
   vagrant-reload
+  vagrant-proxyconf
 )
 
 # Install required plugins
@@ -25,14 +26,22 @@ rescue LoadError
 end
 
 Vagrant.configure("2") do |config|
+
   config.vm.box = "viruzzo/xubuntu-xenial64"
   config.vm.hostname = "devmachine"
+
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
     vb.memory = PARAMS[:vm][:memory]
-	vb.cpus = PARAMS[:vm][:cpus]
-	vb.customize ["modifyvm", :id, "--vram", PARAMS[:vm][:vram]]
-	vb.customize ["modifyvm", :id, "--clipboard", PARAMS[:vm][:clipboard]]
+    vb.cpus = PARAMS[:vm][:cpus]
+    vb.customize ["modifyvm", :id, "--vram", PARAMS[:vm][:vram]]
+    vb.customize ["modifyvm", :id, "--clipboard", PARAMS[:vm][:clipboard]]
+  end
+
+  if Vagrant.has_plugin?("vagrant-proxyconf")
+    config.proxy.http  = PARAMS[:proxy][:http]
+    config.proxy.https = PARAMS[:proxy][:https]
+    config.proxy.no_proxy = PARAMS[:proxy][:no_proxy]
   end
 
   config.vm.provision "ansible_local" do |ansible|

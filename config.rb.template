@@ -14,5 +14,10 @@ PARAMS = {
     vram: 12,
     clipboard: "bidirectional",
     keyboard_locale: "it"
+  },
+  proxy: { # proxy settings
+    http: "", # leave empty string if there is no proxy
+    https: "", # leave empty string if there is no proxy
+    no_proxy: "localhost,127.0.0.1,::1" # default no_proxy settings
   }
 }
