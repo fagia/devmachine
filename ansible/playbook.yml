@@ -9,7 +9,9 @@
     - import_tasks: tasks/install-java.yml
     - import_tasks: tasks/install-mvn.yml
     - import_tasks: tasks/install-gradle.yml
+    - import_tasks: tasks/install-google-chrome.yml
     - import_tasks: tasks/upgrade-os-packages.yml
+    - import_tasks: tasks/init-whiskermenu.yml
     - name: Install Intellij
       include_role:
         name: gantsign.intellij
