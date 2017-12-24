@@ -4,7 +4,7 @@ Vagrant + Ansible provisioning of a development virtual machine based on Xubuntu
 
 * Java JDK 1.8
 * Gradle 4.2
-* IntelliJ 2017.2.5-community
+* IntelliJ 2017.3 (community edition)
 * Google Chrome (stable)
 
 ## Setup:
