@@ -1,4 +1,5 @@
 ---
+
 - name: Gather existing Google Chrome executable path
   command: 'which google-chrome'
   register: google_chrome_installed
@@ -31,3 +32,14 @@
     state: present
   become: True
   when: google_chrome_not_installed
+
+- name: Add necessary dock items
+  template:
+    src: '{{ item }}'
+    dest: '{{ plank_dock_configuration_dir }}/{{ item }}'
+    force: no
+    mode: 0644
+  with_items:
+    - google-chrome.dockitem
+  become: True
+  become_user: '{{ params.user.username }}'

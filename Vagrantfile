@@ -27,7 +27,7 @@ end
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "viruzzo/xubuntu-xenial64"
+  config.vm.box = "bento/ubuntu-16.04"
   config.vm.hostname = "devmachine"
 
   config.vm.provider "virtualbox" do |vb|

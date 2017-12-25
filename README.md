@@ -1,11 +1,12 @@
-# devmachine
+# Fagia Dev Machine
 
-Vagrant + Ansible provisioning of a development virtual machine based on Xubuntu Desktop (https://app.vagrantup.com/viruzzo/boxes/xubuntu-xenial64), provisioned with:
+Vagrant + Ansible provisioning of a development virtual machine based on Ubuntu 16.04 + ElementaryOS desktop environment, provisioned with:
 
+* Google Chrome browser (latest stable)
 * Java JDK 1.8
-* Gradle 4.2
-* IntelliJ 2017.3 (community edition)
-* Google Chrome (stable)
+* Gradle (latest stable)
+* Maven (latest stable)
+* IntelliJ (latest stable community edition)
 
 ## Setup:
 
@@ -21,8 +22,10 @@ Once finished with the installation of the programs above, open a command termin
 	git clone https://github.com/fagia/devmachine.git
 	cd devmachine
 
-Copy the file <code>config.rb.template</code> to <code>config.rb</code> and in the copied file complete the missing informations, then:
+Copy the file <code>config.rb.template</code> to <code>config.rb</code> and in the copied file fill in the configuration informations, then:
 
 	vagrant up
 
-Now you should be able to log in the provisioned development virtual machine (use the credentials that you entered in the config.rb file) and happy coding!
+Now you should be able to log into the fully provisioned development virtual machine (use the credentials that you entered in the config.rb file).
+
+Happy coding!

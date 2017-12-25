@@ -8,3 +8,8 @@
   command: "localectl set-keymap {{ params.vm.keyboard_locale }}"
   become: True
   when: "'VC Keymap: {{ params.vm.keyboard_locale }}' not in localectl_status.stdout"
+
+- name: Set timezone
+  timezone:
+    name: "{{ params.vm.timezone }}"
+  become: True

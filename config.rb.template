@@ -13,11 +13,21 @@ PARAMS = {
     memory: 2048,
     vram: 12,
     clipboard: "bidirectional",
-    keyboard_locale: "it"
+    keyboard_locale: "it",
+    timezone: "Europe/Rome"
   },
   proxy: { # proxy settings
     http: "", # leave empty string if there is no proxy
     https: "", # leave empty string if there is no proxy
     no_proxy: "localhost,127.0.0.1,::1" # default no_proxy settings
+  },
+  apps: { # optional applications settings
+    install: {
+      chrome: true,
+      java: true,
+      maven: true,
+      gradle: true,
+      intellij_idea: true
+    }
   }
 }

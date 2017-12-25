@@ -30,18 +30,17 @@
   when: getent_passwd.rc != 0 or params.user.fullname not in getent_passwd.stdout
   become: True
 
-- name: Symlink '/home/ubuntu' to the user home for retrocompatibility
-  file: src=/home/{{ params.user.username }} dest=/home/ubuntu state=link
-  become: True
-
-- name: Disable GUI login as user 'vagrant'
+- name: Disable GUI login as user 'vagrant' and 'ubuntu'
   blockinfile:
-    dest: /var/lib/AccountsService/users/vagrant
+    dest: /var/lib/AccountsService/users/{{ item }}
     block: |
       [User]
       SystemAccount=true
     marker: ""
     create: yes
+  with_items:
+    - vagrant
+    - ubuntu
   changed_when: False
   become: True
 
@@ -55,3 +54,31 @@
     create: yes
   changed_when: False
   become: True
+
+- name: Set fact plank_dock_configuration_dir
+  set_fact:
+    plank_dock_configuration_dir='/home/{{ params.user.username }}/.config/plank/dock1/launchers'
+
+- name: Ensures whiskermenu configuration dir exists
+  file: path={{ plank_dock_configuration_dir }} state=directory
+  become: True
+  become_user: '{{ params.user.username }}'
+
+- name: Remove unecessary dock items
+  file: path='{{ plank_dock_configuration_dir }}/{{ item }}' state=absent
+  with_items:
+    - org.pantheon.photos.dockitem
+    - org.pantheon.switchboard.dockitem
+  become: True
+  become_user: '{{ params.user.username }}'
+
+- name: Add necessary dock items
+  template:
+    src: '{{ item }}'
+    dest: '{{ plank_dock_configuration_dir }}/{{ item }}'
+    force: no
+    mode: 0644
+  with_items:
+    - org.pantheon.terminal.dockitem
+  become: True
+  become_user: '{{ params.user.username }}'
