@@ -28,7 +28,7 @@ end
 Vagrant.configure("2") do |config|
 
   config.vm.box = "bento/ubuntu-16.04"
-  config.vm.hostname = "devmachine"
+  config.vm.hostname = PARAMS[:vm][:name]
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true

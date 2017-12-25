@@ -9,6 +9,7 @@ PARAMS = {
     email: ""     # e-mail address
   },
   vm: { # hardware configuration for the VM
+    name: "devmachine", # The virtual machine hostname. Do not use any special chars, use only letters.
     cpus: 2,
     memory: 2048,
     vram: 12,
