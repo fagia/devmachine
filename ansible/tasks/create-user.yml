@@ -59,7 +59,7 @@
   set_fact:
     plank_dock_configuration_dir='/home/{{ params.user.username }}/.config/plank/dock1/launchers'
 
-- name: Ensures whiskermenu configuration dir exists
+- name: Ensures plank dock configuration dir exists
   file: path={{ plank_dock_configuration_dir }} state=directory
   become: True
   become_user: '{{ params.user.username }}'
