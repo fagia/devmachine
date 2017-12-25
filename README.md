@@ -19,13 +19,13 @@ In the host machine, install the latest stable versions of:
 Once finished with the installation of the programs above, open a command terminal, navigate to a base directory of your choice (avoid directory paths with blanks) and from here:
 
 	git config --global core.autocrlf input
-	git clone https://github.com/fagia/devmachine.git
-	cd devmachine
+	git clone https://github.com/fagia/devmachine.git your-devmachine-name-here
+	cd your-devmachine-name-here
 
 Copy the file <code>config.rb.template</code> to <code>config.rb</code> and in the copied file fill in the configuration informations, then:
 
 	vagrant up
 
-Now you should be able to log into the fully provisioned development virtual machine (use the credentials that you entered in the config.rb file).
+Hold on, this will take a while. Once the initial setup process is complete, you should be able to log into the fully provisioned development virtual machine (use the credentials that you entered in the config.rb file).
 
 Happy coding!
