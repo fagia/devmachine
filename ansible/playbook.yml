@@ -31,10 +31,7 @@
         name: fagia.gradle
       when: params.apps.install.gradle
 
-    - name: Install Intellij
+    - name: Install IntelliJ Idea
       include_role:
-        name: gantsign.intellij
-      vars:
-        intellij_default_jdk_home: /usr/lib/jvm/java-8-oracle
-        intellij_default_maven_home: /usr/share/maven
+        name: fagia.intellij
       when: params.apps.install.java and params.apps.install.maven and params.apps.install.intellij_idea
