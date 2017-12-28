@@ -36,6 +36,7 @@ Vagrant.configure("2") do |config|
     vb.cpus = PARAMS[:vm][:cpus]
     vb.customize ["modifyvm", :id, "--vram", PARAMS[:vm][:vram]]
     vb.customize ["modifyvm", :id, "--clipboard", PARAMS[:vm][:clipboard]]
+    vb.customize ["setextradata", :id, "GUI/MiniToolBarAlignment", "Top"]
   end
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
