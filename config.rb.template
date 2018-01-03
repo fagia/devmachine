@@ -4,7 +4,7 @@
 PARAMS = {
   user: {
     username: "", # username to create for the machine (not ubuntu). Do not use any special chars, use only letters.
-    password: "", # password to login into the machine
+    password: "", # password to login into the machine. And, if installed, to log into MariaDB as root
     fullname: "", # full user name
     email: ""     # e-mail address
   },
@@ -25,6 +25,7 @@ PARAMS = {
   apps: { # optional applications settings
     install: {
       chrome: true,
+      mariadb: true,
       java: true,
       maven: true,
       gradle: true,

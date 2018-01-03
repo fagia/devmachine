@@ -16,6 +16,11 @@
         name: fagia.chrome
       when: params.apps.install.chrome
 
+    - name: Install MariaDB
+      include_role:
+        name: fagia.mariadb
+      when: params.apps.install.mariadb
+
     - name: Install Java
       include_role:
         name: fagia.java
