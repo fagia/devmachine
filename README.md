@@ -3,10 +3,12 @@
 Vagrant + Ansible provisioning of a development virtual machine based on Ubuntu 16.04 + ElementaryOS desktop environment, provisioned with:
 
 * Google Chrome browser (latest stable)
+* MariaDB (latest stable available for Ubuntu Xenial)
 * Java JDK 1.8
 * Gradle (latest stable)
 * Maven (latest stable)
 * IntelliJ (latest stable community edition)
+* PyCharm (2017.3.2 community edition)
 
 ## Setup:
 

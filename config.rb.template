@@ -29,7 +29,8 @@ PARAMS = {
       java: true,
       maven: true,
       gradle: true,
-      intellij_idea: true
+      intellij_idea: true,
+      pycharm: true
     }
   }
 }

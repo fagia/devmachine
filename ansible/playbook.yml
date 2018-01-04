@@ -40,3 +40,8 @@
       include_role:
         name: fagia.intellij
       when: params.apps.install.java and params.apps.install.maven and params.apps.install.intellij_idea
+
+    - name: Install PyCharm
+      include_role:
+        name: fagia.pycharm
+      when: params.apps.install.java and params.apps.install.pycharm

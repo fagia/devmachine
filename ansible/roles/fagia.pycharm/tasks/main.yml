@@ -1,0 +1,33 @@
+---
+
+- name: Set fact pycharm_version
+  set_fact:
+    pycharm_version='2017.3.2'
+
+- name: Install PyCharm
+  include_role:
+    name: tersmitten.pycharm
+  vars:
+    pycharm_edition: community
+  become: True
+
+- name: Add desktop entry
+  template:
+    src: '{{ item }}.j2'
+    dest: '/usr/share/applications/{{ item }}'
+    force: no
+    mode: 0644
+  with_items:
+    - jetbrains-pycharm-ce.desktop
+  become: True
+
+- name: Add necessary dock items
+  template:
+    src: '{{ item }}'
+    dest: '{{ plank_dock_configuration_dir }}/{{ item }}'
+    force: no
+    mode: 0644
+  with_items:
+    - jetbrains-pycharm-ce.dockitem
+  become: True
+  become_user: '{{ params.user.username }}'
