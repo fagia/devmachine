@@ -1,9 +1,5 @@
 ---
 
 - name: Install Apache HTTPD
-  include_role:
-    name: geerlingguy.apache
-  vars:
-    apache_mods_enabled:
-      - rewrite.load
+  apt: name=apache2 state=latest
   become: True

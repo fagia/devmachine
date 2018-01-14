@@ -35,9 +35,14 @@
         name: fagia.php
       when: params.apps.install.php
 
-    - name: Configure Apache HTTPD for PHP
-      include_role:
-        name: fagia.apachephp
+    - name: Install PHP extensions for MariaDB
+      apt: name=php-mysql state=latest
+      become: True
+      when: params.apps.install.mariadb and params.apps.install.php
+
+    - name: Install Apache extensions for PHP
+      apt: name=libapache2-mod-php state=latest
+      become: True
       when: params.apps.install.apache and params.apps.install.php
 
     - name: Install Java
