@@ -26,6 +26,7 @@ PARAMS = {
     install: {
       chrome: true,
       mariadb: true,
+      apache: true,
       java: true,
       maven: true,
       gradle: true,

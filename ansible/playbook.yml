@@ -6,6 +6,10 @@
 
   tasks:
 
+    - name: Force fact ansible_os_family
+      set_fact:
+        ansible_os_family="Debian"
+
     - import_tasks: tasks/install-roles.yml
     - import_tasks: tasks/setup-locale.yml
     - import_tasks: tasks/install-desktop-environment.yml
@@ -20,6 +24,11 @@
       include_role:
         name: fagia.mariadb
       when: params.apps.install.mariadb
+
+    - name: Install Apache HTTPD
+      include_role:
+        name: fagia.apache
+      when: params.apps.install.apache
 
     - name: Install Java
       include_role:

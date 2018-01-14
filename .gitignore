@@ -1,5 +1,6 @@
 /ansible/roles/gantsign.*
 /ansible/roles/tersmitten.*
+/ansible/roles/geerlingguy.*
 /config.rb
 /*.log
 /.vagrant/
