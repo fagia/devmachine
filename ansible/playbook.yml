@@ -45,6 +45,11 @@
       become: True
       when: params.apps.install.apache and params.apps.install.php
 
+    - name: Install Filezilla
+      include_role:
+        name: fagia.filezilla
+      when: params.apps.install.filezilla
+
     - name: Install Java
       include_role:
         name: fagia.java
@@ -69,3 +74,13 @@
       include_role:
         name: fagia.pycharm
       when: params.apps.install.java and params.apps.install.pycharm
+
+    - name: Add necessary menu items
+      template:
+        src: '{{ item }}'
+        dest: '{{ plank_dock_configuration_dir }}/{{ item }}'
+        force: no
+        mode: 0644
+      with_items: "{{ necessary_menu_items }}"
+      become: True
+      become_user: '{{ params.user.username }}'

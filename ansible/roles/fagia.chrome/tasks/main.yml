@@ -33,13 +33,6 @@
   become: True
   when: google_chrome_not_installed
 
-- name: Add necessary dock items
-  template:
-    src: '{{ item }}'
-    dest: '{{ plank_dock_configuration_dir }}/{{ item }}'
-    force: no
-    mode: 0644
-  with_items:
-    - google-chrome.dockitem
-  become: True
-  become_user: '{{ params.user.username }}'
+- name: Set fact necessary_menu_items
+  set_fact:
+    necessary_menu_items: "{{ necessary_menu_items }} + [ 'google-chrome.dockitem' ]"

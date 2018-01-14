@@ -6,6 +6,7 @@ Vagrant + Ansible provisioning of a development virtual machine based on Ubuntu 
 * MariaDB (latest stable available for Ubuntu Xenial)
 * Apache (latest stable)
 * PHP (latest stable)
+* Filezilla (latest stable)
 * Java JDK 1.8
 * Gradle (latest stable)
 * Maven (latest stable)

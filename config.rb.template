@@ -28,6 +28,7 @@ PARAMS = {
       mariadb: true,
       apache: true,
       php: true,
+      filezilla: true,
       java: true,
       maven: true,
       gradle: true,

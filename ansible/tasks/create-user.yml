@@ -64,7 +64,7 @@
   become: True
   become_user: '{{ params.user.username }}'
 
-- name: Remove unecessary dock items
+- name: Remove unecessary menu items
   file: path='{{ plank_dock_configuration_dir }}/{{ item }}' state=absent
   with_items:
     - org.pantheon.photos.dockitem
@@ -72,13 +72,7 @@
   become: True
   become_user: '{{ params.user.username }}'
 
-- name: Add necessary dock items
-  template:
-    src: '{{ item }}'
-    dest: '{{ plank_dock_configuration_dir }}/{{ item }}'
-    force: no
-    mode: 0644
-  with_items:
-    - org.pantheon.terminal.dockitem
-  become: True
-  become_user: '{{ params.user.username }}'
+- name: Set fact necessary_menu_items
+  set_fact:
+    necessary_menu_items:
+      - "org.pantheon.terminal.dockitem"
