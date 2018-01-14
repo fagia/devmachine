@@ -1,0 +1,6 @@
+---
+
+- name: Install PHP
+  include_role:
+    name: geerlingguy.php
+  become: True

@@ -1,0 +1,6 @@
+---
+
+- name: Configure Apache HTTPD for PHP
+  include_role:
+    name: geerlingguy.apache-php-fpm
+  become: True

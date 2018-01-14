@@ -46,6 +46,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "ansible_local" do |ansible|
+    ansible.version = "latest"
     ansible.playbook = "playbook.yml"
     ansible.provisioning_path = "/vagrant/ansible"
     ansible.extra_vars = { params: PARAMS }

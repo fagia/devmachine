@@ -30,6 +30,16 @@
         name: fagia.apache
       when: params.apps.install.apache
 
+    - name: Install PHP
+      include_role:
+        name: fagia.php
+      when: params.apps.install.php
+
+    - name: Configure Apache HTTPD for PHP
+      include_role:
+        name: fagia.apachephp
+      when: params.apps.install.apache and params.apps.install.php
+
     - name: Install Java
       include_role:
         name: fagia.java

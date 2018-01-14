@@ -27,6 +27,7 @@ PARAMS = {
       chrome: true,
       mariadb: true,
       apache: true,
+      php: true,
       java: true,
       maven: true,
       gradle: true,

@@ -6,11 +6,4 @@
   vars:
     apache_mods_enabled:
       - rewrite.load
-    apache_state: stopped
-  become: True
-
-- name: Restart Apache (temporary fix since Ansible is not running handlers from included role as root)
-  service:
-    name: "{{ apache_service }}"
-    state: "restarted"
   become: True
