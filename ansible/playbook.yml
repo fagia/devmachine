@@ -50,6 +50,11 @@
         name: fagia.filezilla
       when: params.apps.install.filezilla
 
+    - name: Install SublimeText
+      include_role:
+        name: fagia.sublime
+      when: params.apps.install.sublime
+
     - name: Install Java
       include_role:
         name: fagia.java

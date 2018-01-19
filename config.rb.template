@@ -29,6 +29,7 @@ PARAMS = {
       apache: true,
       php: true,
       filezilla: true,
+      sublime: true,
       java: true,
       maven: true,
       gradle: true,
