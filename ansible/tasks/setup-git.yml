@@ -1,0 +1,18 @@
+---
+
+- name: Install git
+  apt: name=git state=latest allow_unauthenticated=yes
+  become: True
+
+- name: Configure Git for the development user
+  git_config: name={{ item.name }} value={{ item.value }} scope=global
+  with_items:
+    - { name: user.name, value: "{{ params.user.fullname }}" }
+    - { name: user.email, value: "{{ params.user.email }}" }
+    - { name: credential.helper, value: store }
+    - { name: http.proxy, value: "{{ params.proxy.http }}" }
+    - { name: https.proxy, value: "{{ params.proxy.https }}" }
+    - { name: pull.rebase, value: "true" }
+    - { name: push.default, value: "simple" }
+  become: True
+  become_user: "{{ params.user.username }}"
