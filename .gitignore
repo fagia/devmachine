@@ -1,7 +1,9 @@
+/ansible/requirements-private.yml
 /ansible/roles/gantsign.*
 /ansible/roles/tersmitten.*
 /ansible/roles/geerlingguy.*
+/ansible/roles/private/*
+/ansible/*.retry
 /config.rb
 /*.log
 /.vagrant/
-playbook.retry
