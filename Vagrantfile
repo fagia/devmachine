@@ -45,6 +45,8 @@ Vagrant.configure("2") do |config|
     config.proxy.no_proxy = PARAMS[:proxy][:no_proxy]
   end
 
+  config.vm.provision "shell", path: "install_ansible_devel.sh"
+
   config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "playbook.yml"
     ansible.provisioning_path = "/vagrant/ansible"
