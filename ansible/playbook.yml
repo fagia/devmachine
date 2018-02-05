@@ -6,9 +6,14 @@
 
   tasks:
 
-    - name: Force fact ansible_os_family
-      set_fact:
-        ansible_os_family="Debian"
+    - name: Install aptitude
+      apt: name=aptitude state=latest install_recommends=no
+      become: True
+
+    - name: Update all packages to the latest version
+      apt:
+        upgrade: dist
+      become: True
 
     - import_tasks: tasks/install-roles.yml
     - import_tasks: tasks/setup-locale.yml
@@ -91,7 +96,7 @@
       include_role:
         name: "{{ item.path }}"
       with_items: "{{ private_roles.files }}"
-      when: ( private_roles.files|length > 0 ) and ( ansible_version.full | version_compare('2.4.2.0', '>') )
+      when: ( private_roles.files|length > 0 ) and ( ansible_version.full is version_compare('2.4.2.0', '>') )
 
     - name: Add necessary menu items
       template:
@@ -102,3 +107,27 @@
       with_items: "{{ necessary_menu_items }}"
       become: True
       become_user: '{{ params.user.username }}'
+
+    - name: Debug ansible_os_family variable (TODO for next task)
+      debug:
+        msg: "ansible_os_family={{ ansible_os_family }}"
+
+    - name: Remove unecessary applications
+      apt: name={{ item }} state=absent purge=yes
+      with_items:
+        - pantheon-mail
+        - audience
+        - noise
+        - byobu
+        - epiphany-browser
+        - epiphany
+        - appcenter
+      become: True
+
+    - name: Clean apt cache
+      command: "apt clean"
+      become: True
+
+    - name: Autoremove old packages
+      command: "apt autoremove --purge -y"
+      become: True
