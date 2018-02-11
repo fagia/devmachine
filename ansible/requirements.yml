@@ -2,5 +2,4 @@
 
 - src: tersmitten.pycharm
 
-- src: git+https://github.com/fagia/fagia.sublimetext.git
-  version: master
+- src: fagia.sublimetext
