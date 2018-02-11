@@ -12,6 +12,7 @@
 
     - name: Update all packages to the latest version
       apt:
+        update_cache: yes
         upgrade: dist
       become: True
 
@@ -121,6 +122,7 @@
         - epiphany-browser
         - epiphany
         - appcenter
+        - maya-calendar
       become: True
 
     - name: Clean apt cache
