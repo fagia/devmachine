@@ -58,7 +58,11 @@
 
     - name: Install SublimeText
       include_role:
-        name: fagia.sublime
+        name: fagia.sublimetext
+      when: params.apps.install.sublime
+    - name: Set fact necessary_menu_items
+      set_fact:
+        necessary_menu_items: "{{ necessary_menu_items }} + [ 'sublime_text.dockitem' ]"
       when: params.apps.install.sublime
 
     - name: Install Java

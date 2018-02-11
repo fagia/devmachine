@@ -1,2 +1,6 @@
 - src: gantsign.intellij
+
 - src: tersmitten.pycharm
+
+- src: git+https://github.com/fagia/fagia.sublimetext.git
+  version: master

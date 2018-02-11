@@ -2,6 +2,7 @@
 /ansible/roles/gantsign.*
 /ansible/roles/tersmitten.*
 /ansible/roles/geerlingguy.*
+/ansible/roles/fagia.sublimetext/*
 /ansible/roles/private/*
 /ansible/*.retry
 /config.rb
