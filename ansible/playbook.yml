@@ -100,6 +100,8 @@
       include_role:
         name: "{{ item.path }}"
       with_items: "{{ private_roles.files }}"
+      become: True
+      become_user: '{{ params.user.username }}'
       when: ( private_roles.files|length > 0 ) and ( ansible_version.full is version_compare('2.4.2.0', '>') )
 
     - name: Add necessary menu items
