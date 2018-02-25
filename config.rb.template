@@ -22,7 +22,7 @@ PARAMS = {
     https: "", # leave empty string if there is no proxy
     no_proxy: "localhost,127.0.0.1,::1" # default no_proxy settings
   },
-  apps: { # optional applications settings
+  apps: { # applications settings
     install: {
       chrome: true,
       mariadb: true,
@@ -36,5 +36,6 @@ PARAMS = {
       intellij_idea: true,
       pycharm: true
     }
-  }
+  },
+  roles: [] # optional extra roles, eg: ["git+https://my-private-git-repo/repo.git,master", "git+https://another-git-repo/repo.git,0b7cd353c0250e87a26e0499e59e7fd265cc2f25"]
 }

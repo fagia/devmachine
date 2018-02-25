@@ -112,10 +112,6 @@
       become: True
       become_user: '{{ params.user.username }}'
 
-    - name: Debug ansible_os_family variable (TODO for next task)
-      debug:
-        msg: "ansible_os_family={{ ansible_os_family }}"
-
     - name: Remove unecessary applications
       apt: name={{ item }} state=absent purge=yes
       with_items:

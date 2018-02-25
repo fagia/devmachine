@@ -1,14 +1,6 @@
 - name: Installing AnsibleGalaxy roles based on requirements file
   local_action: command ansible-galaxy install -r requirements.yml --roles-path ./roles
 
-- name: Set fact private_requirements_filename
-  set_fact:
-    private_requirements_filename="requirements-private.yml"
-
-- name: Gather stat for private requirements file
-  stat: path="{{ private_requirements_filename }}"
-  register: private_requirements_file
-
 - name: Installing extra (private) roles
-  local_action: command ansible-galaxy install -r {{ private_requirements_filename }} --roles-path ./roles/private
-  when: private_requirements_file.stat.exists == True
+  local_action: command ansible-galaxy install --roles-path ./roles/private {{ item }}
+  with_items: "{{ params.roles }}"

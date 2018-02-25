@@ -27,7 +27,7 @@ Once finished with the installation of the programs above, open a command termin
 	git clone https://github.com/fagia/devmachine.git your-devmachine-name-here
 	cd your-devmachine-name-here
 
-Copy the file <code>config.rb.template</code> to <code>config.rb</code> and in the copied file fill in the configuration informations.
+Copy the file <code>config.rb.template</code> to <code>config.rb</code> and, in the copied file, fill in the configuration informations.
 
 Then:
 
