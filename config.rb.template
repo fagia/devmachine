@@ -37,5 +37,5 @@ PARAMS = {
       pycharm: true
     }
   },
-  roles: [] # optional extra roles, eg: ["git+https://my-private-git-repo/repo.git,master", "git+https://another-git-repo/repo.git,0b7cd353c0250e87a26e0499e59e7fd265cc2f25"]
+  roles: [] # optional extra roles, eg: [{url:"git+https://my-private-git-repo/role1.git,master",name:"role1"}, {url:"git+https://another-git-repo/role2.git,0b7cd353c0250e87a26e0499e59e7fd265cc2f25",name:"role2"}]
 }

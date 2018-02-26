@@ -90,19 +90,14 @@
         name: fagia.pycharm
       when: params.apps.install.java and params.apps.install.pycharm
 
-    - name: Finding extra (private) roles
-      find:
-        paths: roles/private
-        file_type: directory
-      register: private_roles
-
     - name: Running extra (private) roles
       include_role:
-        name: "{{ item.path }}"
-      with_items: "{{ private_roles.files }}"
+        name: "roles/private/{{ item.name }}"
+        private: True
+      with_items: "{{ params.roles }}"
       vars:
         default_user: "{{ params.user.username }}"
-      when: ( private_roles.files|length > 0 ) and ( ansible_version.full is version_compare('2.4.2.0', '>') )
+      when: ( params.roles|length > 0 ) and ( ansible_version.full is version_compare('2.4.2.0', '>') )
 
     - name: Clean-up extra (private) roles
       file:
