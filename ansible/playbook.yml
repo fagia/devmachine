@@ -68,12 +68,12 @@
     - name: Install Java
       include_role:
         name: fagia.java
-      when: params.apps.install.java
+      when: params.apps.install.java or params.apps.install.intellij_idea or params.apps.install.pycharm
 
     - name: Install Maven
       include_role:
         name: fagia.maven
-      when: params.apps.install.maven
+      when: params.apps.install.maven or params.apps.install.intellij_idea
 
     - name: Install Gradle
       include_role:
@@ -83,12 +83,12 @@
     - name: Install IntelliJ Idea
       include_role:
         name: fagia.intellij
-      when: params.apps.install.java and params.apps.install.maven and params.apps.install.intellij_idea
+      when: params.apps.install.intellij_idea
 
     - name: Install PyCharm
       include_role:
         name: fagia.pycharm
-      when: params.apps.install.java and params.apps.install.pycharm
+      when: params.apps.install.pycharm
 
     - name: Running extra (private) roles
       include_role:
