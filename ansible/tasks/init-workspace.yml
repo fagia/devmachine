@@ -1,0 +1,20 @@
+---
+
+- name: Set fact workspace_dir
+  set_fact:
+    workspace_dir="/home/{{ params.user.username }}/workspace"
+
+- name: Create workspace directory
+  file:
+    state: directory
+    path: "{{ workspace_dir }}"
+  become: True
+  become_user: "{{ params.user.username }}"
+
+- name: Checkout or update workspace projects
+  git:
+    repo: "{{ item }}"
+    dest: "{{ workspace_dir }}"
+  become: True
+  become_user: "{{ params.user.username }}"
+  with_items: "{{ params.workspace.gitrepos }}"

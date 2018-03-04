@@ -5,7 +5,7 @@ PARAMS = {
   user: {
     username: "", # username to create for the machine (not ubuntu). Do not use any special chars, use only letters.
     password: "", # password to login into the machine. And, if installed, to log into MariaDB as root
-    fullname: "", # full user name
+    fullname: "", # user full name
     email: ""     # e-mail address
   },
   vm: { # hardware configuration for the VM
@@ -37,5 +37,8 @@ PARAMS = {
       pycharm: true
     }
   },
-  roles: [] # optional extra roles, eg: [{url:"git+https://my-private-git-repo/role1.git,master",name:"role1"}, {url:"git+https://another-git-repo/role2.git,0b7cd353c0250e87a26e0499e59e7fd265cc2f25",name:"role2"}]
+  roles: [], # optional extra roles, eg: [{url:"git+https://my-private-git-repo/role1.git,master",name:"role1"}, {url:"git+https://another-git-repo/role2.git,0b7cd353c0250e87a26e0499e59e7fd265cc2f25",name:"role2"}]
+  workspace: {
+    gitrepos: [] # optional list of git repositories to be initialized in the workspace directory
+  }
 }

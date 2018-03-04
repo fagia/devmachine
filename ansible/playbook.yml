@@ -107,6 +107,9 @@
         - absent
         - directory
 
+    - import_tasks: tasks/init-workspace.yml
+      when: params.workspace.gitrepos|length > 0
+
     - name: Add necessary menu items
       template:
         src: '{{ item }}'
