@@ -1,14 +1,23 @@
 ---
 
-- name: Set fact pycharm_version
-  set_fact:
-    pycharm_version='2017.3.2'
+- name: Create download dir
+  file:
+    path: "{{ pycharm_downloads_path }}"
+    state: directory
+  become: True
 
-- name: Install PyCharm
-  include_role:
-    name: tersmitten.pycharm
-  vars:
-    pycharm_edition: community
+- name: Download
+  get_url:
+    url: "http://download.jetbrains.com/python/pycharm-{{ pycharm_edition }}-{{ pycharm_version }}.tar.gz"
+    dest: "{{ pycharm_downloads_path }}/pycharm-{{ pycharm_edition }}-{{ pycharm_version }}.tar.gz"
+  become: True
+
+- name: Install
+  unarchive:
+    src: "{{ pycharm_downloads_path }}/pycharm-{{ pycharm_edition }}-{{ pycharm_version }}.tar.gz"
+    dest: "{{ pycharm_install_prefix }}"
+    creates: "{{ pycharm_install_prefix }}/pycharm-{{ pycharm_version }}"
+    copy: false
   become: True
 
 - name: Add desktop entry

@@ -1,5 +1,4 @@
+---
+
 - src: gantsign.intellij
-
-- src: tersmitten.pycharm
-
 - src: fagia.sublimetext
