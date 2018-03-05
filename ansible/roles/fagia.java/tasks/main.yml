@@ -5,7 +5,8 @@
   become: True
 
 - name: Add Oracle Java Repository
-  apt_repository: repo='ppa:webupd8team/java'
+  apt_repository:
+    repo: "deb http://ppa.launchpad.net/webupd8team/java/{{ ansible_distribution|lower }} {{ ansible_distribution_release|lower }} main"
   become: True
 
 - name: Accept Java 8 License
