@@ -11,6 +11,6 @@ if [ -z "$(which pip)" ]; then
 fi
 
 if [ -z "$(which ansible)" ]; then
-  echo "installing ansible, devel version..."
-  sudo pip install git+https://github.com/ansible/ansible.git@devel
+  echo "installing fagia/ansible@devel version..."
+  sudo pip install git+https://github.com/fagia/ansible.git@devel
 fi
