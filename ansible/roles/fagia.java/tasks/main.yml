@@ -14,7 +14,7 @@
   become: True
 
 - name: Install Oracle Java 8
-  apt: name={{item}} state=latest
+  apt: name={{item}} allow_unauthenticated=yes state=latest
   with_items:
     - oracle-java8-installer
     - ca-certificates
