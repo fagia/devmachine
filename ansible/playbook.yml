@@ -20,6 +20,7 @@
     - import_tasks: tasks/setup-locale.yml
     - import_tasks: tasks/create-user.yml
     - import_tasks: tasks/setup-git.yml
+    - import_tasks: tasks/init-wallpaper.yml
 
     - name: Install Google Chrome
       include_role:

@@ -1,0 +1,26 @@
+---
+
+- name: Check if the wallpaper image exists
+  stat:
+    path: "{{ wallpaper_image }}"
+  register: wallpaper_image_stat
+
+- name: Set fact needs_wallpaper
+  set_fact:
+    needs_wallpaper={{ not wallpaper_image_stat.stat.exists }}
+
+- name: Download a new image, if it doesn't exist already
+  get_url:
+    url: "https://source.unsplash.com/random/{{ params.vm.wallpaper.width }}x{{ params.vm.wallpaper.height }}"
+    dest: "{{ wallpaper_image }}"
+    mode: 0644
+  when: needs_wallpaper
+  become: True
+
+- name: Update symlink to wallpaper, if necessary
+  file:
+    src: "{{ wallpaper_image }}"
+    dest: "/usr/share/backgrounds/elementaryos-default"
+    state: link
+  when: needs_wallpaper
+  become: True

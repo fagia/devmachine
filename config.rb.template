@@ -15,7 +15,11 @@ PARAMS = {
     vram: 12,
     clipboard: "bidirectional",
     keyboard_locale: "it",
-    timezone: "Europe/Rome"
+    timezone: "Europe/Rome",
+    wallpaper: {
+      width: 2560,
+      height: 1707
+    }
   },
   proxy: { # proxy settings
     http: "", # leave empty string if there is no proxy
