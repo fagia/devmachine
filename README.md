@@ -4,14 +4,17 @@ Vagrant + Ansible provisioning of a development virtual machine based on Ubuntu 
 
 * Google Chrome browser (latest stable)
 * MariaDB (latest stable available for Ubuntu Xenial)
-* Apache (latest stable)
+* Apache HTTPD (latest stable)
 * PHP (latest stable)
 * Filezilla (latest stable)
+* Sublime Text 3 (latest stable)
 * Java JDK 1.8
 * Gradle (latest stable)
 * Maven (latest stable)
 * IntelliJ (latest stable community edition)
-* PyCharm (2017.3.2 community edition)
+* PyCharm (2017.3.3 community edition)
+* your additional roles
+* your workspace git repositories
 
 ## Setup:
 
