@@ -28,6 +28,7 @@ end
 Vagrant.configure("2") do |config|
 
   config.vm.box = "fagia/ubuntu-elementary-de-16.04"
+  config.vm.box_version = "0.0.1"
   config.vm.hostname = PARAMS[:vm][:name]
 
   config.vm.provider "virtualbox" do |vb|
