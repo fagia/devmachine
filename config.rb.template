@@ -37,8 +37,8 @@ PARAMS = {
       pycharm: true
     }
   },
-  roles: [], # optional extra roles, eg: [{url:"git+https://my-private-git-repo/role1.git,master",name:"role1"}, {url:"git+https://another-git-repo/role2.git,0b7cd353c0250e87a26e0499e59e7fd265cc2f25",name:"role2"}]
+  roles: [], # optional list of extra roles to be executed, eg: ["git+https://a-roles-repo/role1.git,master"]
   workspace: {
-    gitrepos: [] # optional list of git repositories to be initialized in the workspace directory
+    gitrepos: [] # optional list of git repositories to be initialized in the workspace directory, eg: ["https://a-git-repo/repo1.git"]
   }
 }

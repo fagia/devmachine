@@ -90,22 +90,8 @@
         name: fagia.pycharm
       when: params.apps.install.pycharm
 
-    - name: Running extra (private) roles
-      include_role:
-        name: "roles/private/{{ item.name }}"
-        private: True
-      with_items: "{{ params.roles }}"
-      vars:
-        default_user: "{{ params.user.username }}"
+    - import_tasks: tasks/execute-extra-roles.yml
       when: ( params.roles|length > 0 ) and ( ansible_version.full is version_compare('2.4.2.0', '>') )
-
-    - name: Clean-up extra (private) roles
-      file:
-        state: "{{ item }}"
-        path: "roles/private"
-      with_items:
-        - absent
-        - directory
 
     - import_tasks: tasks/init-workspace.yml
       when: params.workspace.gitrepos|length > 0
