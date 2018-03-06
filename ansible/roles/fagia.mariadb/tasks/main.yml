@@ -20,7 +20,7 @@
   become: True
 
 - name: Install python module
-  apt: name=python-mysqldb state=installed
+  apt: name=python-mysqldb state=present
   become: True
 
 - name: Set fact secure_mariadb_sql
