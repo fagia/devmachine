@@ -7,6 +7,7 @@
   with_items: "{{ params.roles }}"
   vars:
     default_user: "{{ params.user.username }}"
+    default_user_password: "{{ params.user.password }}"
 
 - name: Clean-up extra (private) roles
   file:
