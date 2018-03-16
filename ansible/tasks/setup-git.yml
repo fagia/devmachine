@@ -1,7 +1,10 @@
 ---
 
 - name: Install git
-  apt: name=git state=latest allow_unauthenticated=yes
+  apt: name={{ item }} state=latest allow_unauthenticated=yes
+  with_items:
+    - git
+    - git-gui
   become: True
 
 - name: Configure Git for the development user
