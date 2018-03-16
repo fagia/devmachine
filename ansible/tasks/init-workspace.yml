@@ -14,7 +14,7 @@
 - name: Checkout or update workspace projects
   git:
     repo: "{{ item }}"
-    dest: "{{ workspace_dir }}/{{ item.rsplit('/', 1)[1].split('.')[0] }}"
+    dest: "{{ workspace_dir }}/{{ item.rsplit('/', 1)[1].rsplit('.git')[0] }}"
   become: True
   become_user: "{{ params.user.username }}"
   with_items: "{{ params.workspace.gitrepos }}"
