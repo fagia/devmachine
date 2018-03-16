@@ -2,7 +2,7 @@
 
 - name: Running extra (private) roles
   include_role:
-    name: "roles/private/{{ item.rsplit('/', 1)[1].split('.')[0] }}"
+    name: "roles/private/{{ item.rsplit('/', 1)[1].rsplit('.')[0] }}"
     private: True
   with_items: "{{ params.roles }}"
   vars:
