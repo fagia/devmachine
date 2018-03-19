@@ -19,6 +19,7 @@ end
 
 begin
   require './config'
+  PARAMS["vault_password_file"] = '/tmp/vault_pass'
 rescue LoadError
   puts "Configuration not found!"
   puts "You must copy the 'config.rb.template' file as 'config.rb' and edit the values inside."
@@ -26,6 +27,14 @@ rescue LoadError
 end
 
 Vagrant.configure("2") do |config|
+
+  class AnsibleVaultPassword
+    def to_s
+      print "Ansible vault password (leave empty if you're not using ansible-vault encrypted group variables): "
+      stdin_pwd = STDIN.gets.chomp
+      stdin_pwd.to_s.empty? ? 'no-password-provided' : stdin_pwd
+    end
+  end
 
   config.vm.box = "fagia/ubuntu-elementary-de-16.04"
   config.vm.box_version = "0.0.1"
@@ -46,11 +55,14 @@ Vagrant.configure("2") do |config|
     config.proxy.no_proxy = PARAMS[:proxy][:no_proxy]
   end
 
+  config.vm.provision "shell", env: {"AVPWD" => AnsibleVaultPassword.new, "AVPASSFILE" => PARAMS["vault_password_file"]}, inline: "echo $AVPWD > $AVPASSFILE"
+
   config.vm.provision "shell", path: "install_ansible_devel.sh"
 
   config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "playbook.yml"
     ansible.provisioning_path = "/vagrant/ansible"
+    ansible.vault_password_file = PARAMS["vault_password_file"]
     ansible.extra_vars = { params: PARAMS }
   end
 

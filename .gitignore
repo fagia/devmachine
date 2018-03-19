@@ -1,3 +1,4 @@
+/ansible/group_vars/all/vault.yml
 /ansible/roles/gantsign.*
 /ansible/roles/tersmitten.*
 /ansible/roles/geerlingguy.*

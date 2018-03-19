@@ -6,6 +6,12 @@
 
   tasks:
 
+    - name: Clean ansible-vault password file
+      file:
+        path: "{{ params.vault_password_file }}"
+        state: absent
+      become: True
+
     - name: Install aptitude
       apt: name=aptitude state=latest install_recommends=no
       become: True
