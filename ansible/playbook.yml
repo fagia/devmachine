@@ -81,6 +81,14 @@
         name: fagia.java
       when: params.apps.install.java or params.apps.install.intellij_idea or params.apps.install.pycharm
 
+    - name: Install Ruby
+      include_role:
+        name: rvm_io.ruby
+      vars:
+        rvm1_rubies: ['ruby-2.3.1']
+        rvm1_user: '{{ params.user.username }}'
+      when: params.apps.install.ruby
+
     - name: Install Maven
       include_role:
         name: fagia.maven

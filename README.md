@@ -9,6 +9,7 @@ Vagrant + Ansible provisioning of a development virtual machine based on Ubuntu 
 * Filezilla (latest stable)
 * Sublime Text 3 (latest stable)
 * Java JDK 1.8
+* Ruby 2.3.1
 * Gradle (latest stable)
 * Maven (latest stable)
 * IntelliJ (latest stable community edition)

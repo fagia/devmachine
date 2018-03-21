@@ -35,6 +35,7 @@ PARAMS = {
       filezilla: true,
       sublime: true,
       java: true,
+      ruby: true,
       maven: true,
       gradle: true,
       intellij_idea: true,
