@@ -2,6 +2,6 @@
   local_action: command ansible-galaxy install -r requirements.yml --roles-path ./roles
 
 - name: Installing additional roles
-  local_action: command ansible-galaxy install --force --roles-path ./roles/additional {{ item }}
+  local_action: "command ansible-galaxy install --force --roles-path ./roles/additional git+{{ item }},master"
   with_items: "{{ params.roles }}"
   no_log: True
