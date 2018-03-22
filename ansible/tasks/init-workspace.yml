@@ -18,3 +18,4 @@
   become: True
   become_user: "{{ params.user.username }}"
   with_items: "{{ params.workspace.gitrepos }}"
+  no_log: True

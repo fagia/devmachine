@@ -4,3 +4,4 @@
 - name: Installing additional roles
   local_action: command ansible-galaxy install --force --roles-path ./roles/additional {{ item }}
   with_items: "{{ params.roles }}"
+  no_log: True
