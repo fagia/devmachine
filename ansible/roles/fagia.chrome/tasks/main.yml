@@ -35,4 +35,4 @@
 
 - name: Set fact necessary_menu_items
   set_fact:
-    necessary_menu_items: "{{ necessary_menu_items }} + [ 'google-chrome.dockitem' ]"
+    necessary_menu_items: "{{ necessary_menu_items }} + [ 'google-chrome' ]"

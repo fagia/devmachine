@@ -8,12 +8,14 @@ Vagrant + Ansible provisioning of a development virtual machine based on Ubuntu 
 * PHP (latest stable)
 * Filezilla (latest stable)
 * Sublime Text 3 (latest stable)
+* DBeaver (latest stable community edition available for Ubuntu Xenial)
 * Java JDK 1.8
 * Ruby 2.3.1
 * Gradle (latest stable)
 * Maven (latest stable)
 * IntelliJ (latest stable community edition)
 * PyCharm (2017.3.3 community edition)
+* LibreOffice (latest stable)
 * your additional roles
 * your workspace git repositories
 

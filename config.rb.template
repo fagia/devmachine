@@ -30,6 +30,7 @@ PARAMS = {
     install: {
       chrome: true,
       mariadb: true,
+      dbeaver: true,
       apache: true,
       php: true,
       filezilla: true,
@@ -39,7 +40,8 @@ PARAMS = {
       maven: true,
       gradle: true,
       intellij_idea: true,
-      pycharm: true
+      pycharm: true,
+      libreoffice: true
     }
   },
   roles: [], # optional list of additional roles to be executed, eg: ["git+https://a-roles-repo/role1.git,master"]

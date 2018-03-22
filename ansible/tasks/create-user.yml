@@ -75,5 +75,5 @@
 - name: Set fact necessary_menu_items
   set_fact:
     necessary_menu_items:
-      - 'org.pantheon.terminal.dockitem'
-      - 'org.pantheon.files.dockitem'
+      - 'org.pantheon.terminal'
+      - 'org.pantheon.files'

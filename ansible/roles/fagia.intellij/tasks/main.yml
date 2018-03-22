@@ -9,4 +9,4 @@
 
 - name: Set fact necessary_menu_items
   set_fact:
-    necessary_menu_items: "{{ necessary_menu_items }} + [ 'jetbrains-idea-ce.dockitem' ]"
+    necessary_menu_items: "{{ necessary_menu_items }} + [ 'jetbrains-idea-ce' ]"

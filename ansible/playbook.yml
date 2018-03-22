@@ -38,6 +38,11 @@
         name: fagia.mariadb
       when: params.apps.install.mariadb
 
+    - name: Install DBeaver
+      include_role:
+        name: fagia.dbeaver
+      when: params.apps.install.dbeaver
+
     - name: Install Apache HTTPD
       include_role:
         name: fagia.apache
@@ -73,7 +78,7 @@
       when: params.apps.install.sublime
     - name: Set fact necessary_menu_items
       set_fact:
-        necessary_menu_items: "{{ necessary_menu_items }} + [ 'sublime_text.dockitem' ]"
+        necessary_menu_items: "{{ necessary_menu_items }} + [ 'sublime_text' ]"
       when: params.apps.install.sublime
 
     - name: Install Java
@@ -109,6 +114,11 @@
         name: fagia.pycharm
       when: params.apps.install.pycharm
 
+    - name: Install LibreOffice
+      apt: name=libreoffice state=latest
+      become: True
+      when: params.apps.install.libreoffice
+
     - name: Running additional roles
       include_role:
         name: "roles/additional/{{ item.rsplit('/', 1)[1].rsplit('.git')[0] }}"
@@ -121,8 +131,8 @@
 
     - name: Add necessary menu items
       template:
-        src: '{{ item }}'
-        dest: '{{ plank_dock_configuration_dir }}/{{ item }}'
+        src: 'application.dockitem.j2'
+        dest: '{{ plank_dock_configuration_dir }}/{{ item }}.dockitem'
         force: no
         mode: 0644
       with_items: "{{ necessary_menu_items }}"
