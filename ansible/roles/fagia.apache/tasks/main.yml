@@ -3,3 +3,11 @@
 - name: Install Apache HTTPD
   apt: name=apache2 state=latest
   become: True
+
+- name: Enable modules
+  file:
+    src: "/etc/apache2/mods-available/{{ item }}"
+    dest: "/etc/apache2/mods-enabled/{{ item }}"
+    state: link
+  with_items: "{{ apache_modules_enabled }}"
+  become: True

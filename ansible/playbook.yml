@@ -46,6 +46,9 @@
     - name: Install Apache HTTPD
       include_role:
         name: fagia.apache
+      vars:
+        apache_modules_enabled:
+          - rewrite.load
       when: params.apps.install.apache
 
     - name: Install PHP
