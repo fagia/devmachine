@@ -1,0 +1,11 @@
+---
+
+- name: Extracting role vars (hack for https://github.com/ansible/ansible/issues/19084 and https://groups.google.com/forum/#!msg/ansible-project/Qrq76VLIqKg/81rW5-8kBAAJ)
+  set_fact:
+  args: "{{ meta_task.role.vars | default('{}') }}"
+  when: meta_task
+
+- name: "Including role {{ meta_task.role.name }}"
+  include_role:
+    name: "{{ meta_task.role.name }}"
+  when: meta_task.role.run

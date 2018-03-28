@@ -28,48 +28,46 @@
     - import_tasks: tasks/setup-git.yml
     - import_tasks: tasks/init-wallpaper.yml
 
-    - name: Install Google Chrome
-      include_role:
-        name: fagia.chrome
-      when: params.apps.install.chrome
-
-    - name: Install MariaDB
-      include_role:
-        name: fagia.mariadb
-      when: params.apps.install.mariadb
-
-    - name: Install DBeaver
-      include_role:
-        name: fagia.dbeaver
-      when: params.apps.install.dbeaver
-
-    - name: Install Apache HTTPD
-      include_role:
-        name: fagia.apache
+    - name: Run roles
+      include: tasks/meta-task.yml
       vars:
-        apache_modules_enabled:
-          - rewrite.load
-      when: params.apps.install.apache
-
-    - name: Install PHP
-      include_role:
-        name: fagia.php
-      when: params.apps.install.php
+        meta_task:
+          role: "{{ with_role }}"
+      loop_control:
+        loop_var: with_role
+      with_items:
+        - name: fagia.chrome
+          run: "{{ params.apps.install.chrome }}"
+        - name: fagia.mariadb
+          run: "{{ params.apps.install.mariadb }}"
+        - name: fagia.dbeaver
+          run: "{{ params.apps.install.dbeaver }}"
+        - name: fagia.apache
+          run: "{{ params.apps.install.apache }}"
+          vars:
+            apache_modules_enabled:
+              - rewrite.load
+        - name: fagia.php
+          run: "{{ params.apps.install.php }}"
+        - name: fagia.filezilla
+          run: "{{ params.apps.install.filezilla }}"
+        - name: fagia.java
+          run: "{{ params.apps.install.java or params.apps.install.intellij_idea or params.apps.install.pycharm }}"
+        - name: rvm_io.ruby
+          run: "{{ params.apps.install.ruby }}"
+          vars:
+            rvm1_rubies: ['ruby-2.3.1']
+            rvm1_user: '{{ params.user.username }}'
 
     - name: Install PHP extensions for MariaDB
       apt: name=php-mysql state=latest
       become: True
       when: params.apps.install.mariadb and params.apps.install.php
 
-    - name: Install Apache extensions for PHP
+    - name: Install PHP extensions for Apache
       apt: name=libapache2-mod-php state=latest
       become: True
       when: params.apps.install.apache and params.apps.install.php
-
-    - name: Install Filezilla
-      include_role:
-        name: fagia.filezilla
-      when: params.apps.install.filezilla
 
     - name: Install SublimeText
       include_role:
@@ -83,19 +81,6 @@
       set_fact:
         necessary_menu_items: "{{ necessary_menu_items }} + [ 'sublime_text' ]"
       when: params.apps.install.sublime
-
-    - name: Install Java
-      include_role:
-        name: fagia.java
-      when: params.apps.install.java or params.apps.install.intellij_idea or params.apps.install.pycharm
-
-    - name: Install Ruby
-      include_role:
-        name: rvm_io.ruby
-      vars:
-        rvm1_rubies: ['ruby-2.3.1']
-        rvm1_user: '{{ params.user.username }}'
-      when: params.apps.install.ruby
 
     - name: Install Maven
       include_role:
