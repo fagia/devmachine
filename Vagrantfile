@@ -31,7 +31,16 @@ Vagrant.configure("2") do |config|
   class AnsibleVaultPassword
     def to_s
       print "Ansible vault password (leave empty if you're not using ansible-vault encrypted group variables): "
+      # temp hack to hide pwd characters input:
+      #   - https://github.com/ruby/io-console/issues/2
+      #   - https://github.com/hashicorp/vagrant/issues/5624#issuecomment-160473599
+      # 8m is the control code to hide characters
+      puts "\e[0;8m"
+      STDOUT.flush
       stdin_pwd = STDIN.gets.chomp
+      # 0m is the control code to reset formatting attributes
+      puts "\e[0m"
+      STDOUT.flush
       stdin_pwd.to_s.empty? ? 'no-password-provided' : stdin_pwd
     end
   end
