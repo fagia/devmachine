@@ -19,3 +19,23 @@
   become_user: "{{ params.user.username }}"
   with_items: "{{ params.workspace.gitrepos }}"
   no_log: True
+
+- name: Add workspace scripts
+  copy:
+    src: files/workspace/scripts
+    dest: "{{ workspace_dir }}"
+  become: True
+  become_user: "{{ params.user.username }}"
+
+- name: Set mode 755 on workspace scripts executables
+  block:
+    - find:
+        paths: "{{ workspace_dir }}/scripts"
+        patterns: "*.sh"
+      register: workspace_dir_executables
+    - file:
+        path: "{{ item.path }}"
+        mode: 0755
+      with_items: "{{ workspace_dir_executables.files }}"
+      become: True
+      become_user: "{{ params.user.username }}"
