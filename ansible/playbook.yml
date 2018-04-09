@@ -49,6 +49,9 @@
       vars:
         apache_modules_enabled:
           - rewrite.load
+          - ssl.conf
+          - ssl.load
+          - socache_shmcb.load
       when: params.apps.install.apache
 
     - name: Install PHP

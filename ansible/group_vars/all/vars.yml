@@ -1,3 +1,3 @@
 ---
 
-wallpaper_image: "/usr/share/backgrounds/{{ params.vm.name }}_{{ params.vm.wallpaper.width }}x{{ params.vm.wallpaper.height }}.jpg"
+wallpaper_image: "/usr/share/backgrounds/{{ ansible_nodename }}_{{ params.vm.wallpaper.width }}x{{ params.vm.wallpaper.height }}.jpg"

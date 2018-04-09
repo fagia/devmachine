@@ -1,7 +1,10 @@
 ---
 
-- name: Install Apache HTTPD
-  apt: name=apache2 state=latest
+- name: Install Apache HTTPD and OpenSSL
+  apt: name={{ item }} state=latest
+  with_items:
+    - apache2
+    - openssl
   become: True
 
 - name: Enable modules
@@ -10,4 +13,42 @@
     dest: "/etc/apache2/mods-enabled/{{ item }}"
     state: link
   with_items: "{{ apache_modules_enabled }}"
+  become: True
+
+- name: Install python support for OpenSSL
+  pip:
+    name: pyopenssl
+    state: latest
+  become: True
+
+- set_fact:
+    selfsigned_certs_dir: "/etc/ssl/private/{{ ansible_nodename }}"
+
+- name: Ensure directory exists for local self-signed TLS certs.
+  file:
+    path: "{{ selfsigned_certs_dir }}"
+    state: directory
+    mode: 0700
+    owner: root
+    group: root
+  become: True
+
+- name: Generate an OpenSSL private key.
+  openssl_privatekey:
+    path: "{{ selfsigned_certs_dir }}/privkey.pem"
+  become: True
+
+- name: Generate an OpenSSL CSR.
+  openssl_csr:
+    path: "{{ selfsigned_certs_dir }}/{{ ansible_nodename }}.csr"
+    privatekey_path: "{{ selfsigned_certs_dir }}/privkey.pem"
+    common_name: "{{ ansible_nodename }}"
+  become: True
+
+- name: Generate a Self Signed OpenSSL certificate.
+  openssl_certificate:
+    path: "{{ selfsigned_certs_dir }}/selfsigned.crt"
+    privatekey_path: "{{ selfsigned_certs_dir }}/privkey.pem"
+    csr_path: "{{ selfsigned_certs_dir }}/{{ ansible_nodename }}.csr"
+    provider: selfsigned
   become: True
