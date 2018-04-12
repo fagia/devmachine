@@ -6,6 +6,7 @@ Vagrant + Ansible provisioning of a development virtual machine based on Ubuntu 
 * MariaDB (latest stable available for Ubuntu Xenial)
 * Apache HTTPD (latest stable)
 * PHP (latest stable)
+* MailHog 0.2.1
 * Filezilla (latest stable)
 * Sublime Text 3 (latest stable)
 * DBeaver (latest stable community edition available for Ubuntu Xenial)

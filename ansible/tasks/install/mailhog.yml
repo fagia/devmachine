@@ -1,0 +1,52 @@
+---
+
+- name: Set MailHog facts
+  set_fact:
+    mailhog_dir: /opt/mailhog
+    mailhog_png_file: /opt/mailhog/mailhog.png
+
+- name: Install MailHog
+  include_role:
+    name: geerlingguy.mailhog
+  vars:
+    mailhog_install_dir: "{{ mailhog_dir }}"
+    ansible_become: yes
+  when: params.apps.install.mailhog
+
+- name: Add MailHog icon
+  copy:
+    src: files/icons/mailhog.png
+    dest: "{{ mailhog_png_file }}"
+  become: True
+  when: params.apps.install.mailhog and params.apps.install.chrome
+
+- name: Add MailHog desktop entry
+  template:
+    src: mailhog.desktop.j2
+    dest: /usr/share/applications/mailhog.desktop
+    force: no
+    mode: 0644
+  become: True
+  when: params.apps.install.mailhog and params.apps.install.chrome
+
+- name: Set fact necessary_menu_items
+  set_fact:
+    necessary_menu_items: "{{ necessary_menu_items }} + [ 'mailhog' ]"
+  when: params.apps.install.mailhog and params.apps.install.chrome
+
+- name: Retrieve php.ini file paths
+  find:
+    paths: /etc/php
+    patterns: php.ini
+    recurse: True
+  register: found_php_ini
+  when: params.apps.install.mailhog and params.apps.install.php
+
+- name: Configure mhsendmail for PHP
+  lineinfile:
+    path: "{{ item.path }}"
+    regexp: ".*sendmail_path *=.*"
+    line: 'sendmail_path = "{{ mailhog_dir }}/mhsendmail"'
+  with_items: "{{ found_php_ini.files }}"
+  become: True
+  when: params.apps.install.mailhog and params.apps.install.php

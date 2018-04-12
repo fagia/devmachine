@@ -33,6 +33,7 @@ PARAMS = {
       dbeaver: true,
       apache: true,
       php: true,
+      mailhog: true,
       filezilla: true,
       sublime: true,
       java: true,

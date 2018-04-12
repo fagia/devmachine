@@ -69,6 +69,8 @@
       become: True
       when: params.apps.install.apache and params.apps.install.php
 
+    - import_tasks: tasks/install/mailhog.yml
+
     - name: Install Filezilla
       include_role:
         name: fagia.filezilla

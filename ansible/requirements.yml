@@ -3,3 +3,4 @@
 - src: gantsign.intellij
 - src: fagia.sublimetext
 - src: rvm_io.ruby
+- src: geerlingguy.mailhog
