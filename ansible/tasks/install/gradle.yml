@@ -3,3 +3,4 @@
 - name: Install Gradle
   apt: name=gradle state=latest
   become: True
+  when: params.apps.install.gradle

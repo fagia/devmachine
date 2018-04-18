@@ -1,0 +1,10 @@
+---
+
+- name: Install Filezilla
+  when: params.apps.install.filezilla
+  block:
+    - apt: name=filezilla state=latest
+      become: True
+    - name: Set fact necessary_menu_items
+      set_fact:
+        necessary_menu_items: "{{ necessary_menu_items }} + [ 'filezilla' ]"

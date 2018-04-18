@@ -1,0 +1,11 @@
+---
+
+- name: Install PHP
+  when: params.apps.install.php
+  block:
+    - apt: name={{ item }} state=latest
+      with_items:
+        - php
+        - php-mcrypt
+        - php-gd
+      become: True

@@ -22,42 +22,17 @@
         upgrade: dist
       become: True
 
-    - import_tasks: tasks/install-roles.yml
+    - import_tasks: tasks/add-roles.yml
     - import_tasks: tasks/setup-locale.yml
     - import_tasks: tasks/create-user.yml
     - import_tasks: tasks/setup-git.yml
     - import_tasks: tasks/init-wallpaper.yml
 
-    - name: Install Google Chrome
-      include_role:
-        name: fagia.chrome
-      when: params.apps.install.chrome
-
-    - name: Install MariaDB
-      include_role:
-        name: fagia.mariadb
-      when: params.apps.install.mariadb
-
-    - name: Install DBeaver
-      include_role:
-        name: fagia.dbeaver
-      when: params.apps.install.dbeaver
-
-    - name: Install Apache HTTPD
-      include_role:
-        name: fagia.apache
-      vars:
-        apache_modules_enabled:
-          - rewrite.load
-          - ssl.conf
-          - ssl.load
-          - socache_shmcb.load
-      when: params.apps.install.apache
-
-    - name: Install PHP
-      include_role:
-        name: fagia.php
-      when: params.apps.install.php
+    - import_tasks: tasks/install/chrome.yml
+    - import_tasks: tasks/install/mariadb.yml
+    - import_tasks: tasks/install/dbeaver.yml
+    - import_tasks: tasks/install/apache.yml
+    - import_tasks: tasks/install/php.yml
 
     - name: Install PHP extensions for MariaDB
       apt: name=php-mysql state=latest
@@ -70,62 +45,15 @@
       when: params.apps.install.apache and params.apps.install.php
 
     - import_tasks: tasks/install/mailhog.yml
-
-    - name: Install Filezilla
-      include_role:
-        name: fagia.filezilla
-      when: params.apps.install.filezilla
-
-    - name: Install SublimeText
-      include_role:
-        name: fagia.sublimetext
-      vars:
-        sublime_user: '{{ params.user.username }}'
-        user_preferences:
-          hot_exit: false
-      when: params.apps.install.sublime
-    - name: Set fact necessary_menu_items
-      set_fact:
-        necessary_menu_items: "{{ necessary_menu_items }} + [ 'sublime_text' ]"
-      when: params.apps.install.sublime
-
-    - name: Install Java
-      include_role:
-        name: fagia.java
-      when: params.apps.install.java or params.apps.install.intellij_idea or params.apps.install.pycharm
-
-    - name: Install Ruby
-      include_role:
-        name: rvm_io.ruby
-      vars:
-        rvm1_rubies: ['ruby-2.3.1']
-        rvm1_user: '{{ params.user.username }}'
-      when: params.apps.install.ruby
-
-    - name: Install Maven
-      include_role:
-        name: fagia.maven
-      when: params.apps.install.maven or params.apps.install.intellij_idea
-
-    - name: Install Gradle
-      include_role:
-        name: fagia.gradle
-      when: params.apps.install.gradle
-
-    - name: Install IntelliJ Idea
-      include_role:
-        name: fagia.intellij
-      when: params.apps.install.intellij_idea
-
-    - name: Install PyCharm
-      include_role:
-        name: fagia.pycharm
-      when: params.apps.install.pycharm
-
-    - name: Install LibreOffice
-      apt: name=libreoffice state=latest
-      become: True
-      when: params.apps.install.libreoffice
+    - import_tasks: tasks/install/filezilla.yml
+    - import_tasks: tasks/install/sublimetext.yml
+    - import_tasks: tasks/install/java.yml
+    - import_tasks: tasks/install/ruby.yml
+    - import_tasks: tasks/install/maven.yml
+    - import_tasks: tasks/install/gradle.yml
+    - import_tasks: tasks/install/intellij_idea.yml
+    - import_tasks: tasks/install/pycharm.yml
+    - import_tasks: tasks/install/libreoffice.yml
 
     - name: Running additional roles
       include_role:

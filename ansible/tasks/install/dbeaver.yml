@@ -1,0 +1,14 @@
+---
+
+- name: Install DBeaver
+  when: params.apps.install.dbeaver
+  block:
+    - name: Add DBeaver Repository
+      apt_repository: repo="deb http://ppa.launchpad.net/serge-rider/dbeaver-ce/ubuntu xenial main"
+      become: True
+    - name: Install DBeaver
+      apt: name="dbeaver-ce" state=latest allow_unauthenticated=yes install_recommends=no update_cache=yes
+      become: True
+    - name: Set fact necessary_menu_items
+      set_fact:
+        necessary_menu_items: "{{ necessary_menu_items }} + [ 'dbeaver' ]"

@@ -1,0 +1,14 @@
+---
+
+- name: Install SublimeText
+  when: params.apps.install.sublime
+  block:
+    - include_role:
+        name: fagia.sublimetext
+      vars:
+        sublime_user: '{{ params.user.username }}'
+        user_preferences:
+          hot_exit: false
+    - name: Set fact necessary_menu_items
+      set_fact:
+        necessary_menu_items: "{{ necessary_menu_items }} + [ 'sublime_text' ]"

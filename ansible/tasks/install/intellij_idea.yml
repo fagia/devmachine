@@ -1,0 +1,13 @@
+---
+
+- name: Install IntelliJ Idea
+  when: params.apps.install.intellij_idea
+  block:
+    - include_role:
+        name: gantsign.intellij
+      vars:
+        intellij_default_jdk_home: /usr/lib/jvm/java-8-oracle
+        intellij_default_maven_home: /usr/share/maven
+    - name: Set fact necessary_menu_items
+      set_fact:
+        necessary_menu_items: "{{ necessary_menu_items }} + [ 'jetbrains-idea-ce' ]"

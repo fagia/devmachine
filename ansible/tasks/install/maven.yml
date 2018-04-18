@@ -3,3 +3,4 @@
 - name: Install Maven
   apt: name=maven state=latest
   become: True
+  when: params.apps.install.maven or params.apps.install.intellij_idea
