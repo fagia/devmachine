@@ -1,4 +1,9 @@
 ---
+
+- name: Set fact keyboard_locale_vc_keymap
+  set_fact:
+    keyboard_locale_vc_keymap: "VC Keymap: {{ params.vm.keyboard_locale }}"
+
 - name: Check current locale configuration
   command: "localectl status"
   register: localectl_status
@@ -7,7 +12,7 @@
 - name: Set configured locale for the keyboard
   command: "localectl set-keymap {{ params.vm.keyboard_locale }}"
   become: True
-  when: "'VC Keymap: {{ params.vm.keyboard_locale }}' not in localectl_status.stdout"
+  when: localectl_status.stdout is not search(keyboard_locale_vc_keymap)
 
 - name: Set timezone
   timezone:

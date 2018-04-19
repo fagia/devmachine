@@ -40,6 +40,7 @@
         src: 'secure_mariadb.sql.j2'
         dest: '{{ secure_mariadb_sql_path }}'
         mode: 0644
+      changed_when: False
       become: True
       become_user: '{{ params.user.username }}'
 
@@ -53,5 +54,6 @@
       file:
         path: '{{ secure_mariadb_sql_path }}'
         state: absent
+      changed_when: False
       become: True
       become_user: '{{ params.user.username }}'

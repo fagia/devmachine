@@ -11,6 +11,7 @@
         path: "{{ params.vault_password_file }}"
         state: absent
       become: True
+      changed_when: False
 
     - name: Install aptitude
       apt: name=aptitude state=latest install_recommends=no
