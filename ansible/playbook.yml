@@ -61,7 +61,7 @@
         name: "roles/additional/{{ item.rsplit('/', 1)[1].rsplit('.git')[0] }}"
         private: True
       with_items: "{{ params.roles }}"
-      when: ( params.roles|length > 0 ) and ( ansible_version.full is version_compare('2.4.2.0', '>') )
+      when: ( params.roles|length > 0 ) and ( ansible_version.full is version_compare('2.5.0.0', '>') )
 
     - import_tasks: tasks/init-workspace.yml
       when: params.workspace.gitrepos|length > 0

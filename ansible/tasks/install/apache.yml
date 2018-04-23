@@ -11,11 +11,12 @@
       - socache_shmcb.load
   become: True
   block:
-    - name: Install Apache HTTPD and OpenSSL
+    - name: Install Apache HTTPD, OpenSSL and pip
       apt: name={{ item }} state=latest
       with_items:
         - apache2
         - openssl
+        - python-pip
     - name: Enable modules
       file:
         src: "/etc/apache2/mods-available/{{ item }}"

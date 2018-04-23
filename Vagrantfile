@@ -66,8 +66,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", env: {"AVPWD" => AnsibleVaultPassword.new, "AVPASSFILE" => PARAMS["vault_password_file"]}, inline: "echo $AVPWD > $AVPASSFILE"
 
-  config.vm.provision "shell", path: "install_ansible_devel.sh"
-
   config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "playbook.yml"
     ansible.provisioning_path = "/vagrant/ansible"
