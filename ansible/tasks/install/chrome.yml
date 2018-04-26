@@ -21,7 +21,7 @@
           become: True
         - name: Add Google Chrome repo
           apt_repository:
-            repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} main"
+            repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
             filename: "google-chrome"
             state: present
             update_cache: yes
