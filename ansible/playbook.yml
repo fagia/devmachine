@@ -6,8 +6,11 @@
 
   tasks:
 
-    - name: Set fact ansible_os_family = 'Debian'
-      set_fact: ansible_os_family="Debian"
+    - name: Temp hack to get right os related vars
+      set_fact:
+        ansible_os_family: Debian
+        ansible_distribution: Ubuntu
+        ansible_distribution_release: xenial
 
     - name: Clean ansible-vault password file
       file:

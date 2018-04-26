@@ -4,7 +4,7 @@
   when: params.apps.install.dbeaver
   block:
     - name: Add DBeaver Repository
-      apt_repository: repo="deb http://ppa.launchpad.net/serge-rider/dbeaver-ce/ubuntu xenial main"
+      apt_repository: repo="deb http://ppa.launchpad.net/serge-rider/dbeaver-ce/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} main"
       become: True
     - name: Install DBeaver
       apt: name="dbeaver-ce" state=latest allow_unauthenticated=yes install_recommends=no update_cache=yes
