@@ -14,3 +14,12 @@
         name: geerlingguy.docker
       vars:
         ansible_become: yes
+    - name: Ensure group docker exists
+      group:
+        name: docker
+        state: present
+    - name: "Appending the group docker to {{ params.user.username }}'s groups"
+      user:
+        name: "{{ params.user.username }}"
+        groups: docker
+        append: yes
