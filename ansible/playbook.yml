@@ -54,6 +54,7 @@
     - import_tasks: tasks/install/gradle.yml
     - import_tasks: tasks/install/intellij_idea.yml
     - import_tasks: tasks/install/pycharm.yml
+    - import_tasks: tasks/install/docker.yml
     - import_tasks: tasks/install/libreoffice.yml
 
     - name: Running additional roles

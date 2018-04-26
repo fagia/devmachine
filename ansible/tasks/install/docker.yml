@@ -1,0 +1,8 @@
+---
+
+- name: Install Docker
+  when: params.apps.install.docker
+  become: True
+  block:
+    - include_role:
+        name: angstwad.docker_ubuntu

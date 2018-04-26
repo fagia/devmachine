@@ -41,6 +41,7 @@ PARAMS = {
       gradle: true,
       intellij_idea: true,
       pycharm: true,
+      docker: true,
       libreoffice: true
     }
   },

@@ -4,6 +4,7 @@
 /ansible/roles/geerlingguy.*
 /ansible/roles/fagia.sublimetext/*
 /ansible/roles/rvm_io.ruby/*
+/ansible/roles/angstwad.*
 /ansible/roles/additional/*
 /ansible/*.retry
 /config.rb

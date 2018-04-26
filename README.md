@@ -17,6 +17,7 @@ Vagrant + Ansible provisioning of a development virtual machine based on Ubuntu 
 * IntelliJ (latest stable community edition)
 * PyCharm (2017.3.3 community edition)
 * LibreOffice (latest stable)
+* Docker (latest stable community edition)
 * your additional roles
 * your workspace git repositories
 
