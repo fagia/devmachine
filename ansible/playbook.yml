@@ -6,6 +6,9 @@
 
   tasks:
 
+    - name: Set fact ansible_os_family = 'Debian'
+      set_fact: ansible_os_family="Debian"
+
     - name: Clean ansible-vault password file
       file:
         path: "{{ params.vault_password_file }}"

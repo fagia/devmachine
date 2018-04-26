@@ -12,3 +12,5 @@
     - name: Install Docker
       include_role:
         name: geerlingguy.docker
+      vars:
+        ansible_become: yes
