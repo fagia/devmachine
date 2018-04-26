@@ -20,6 +20,7 @@ end
 begin
   require './config'
   PARAMS["vault_password_file"] = '/tmp/vault_pass'
+  PARAMS[:vm][:name] = File.basename(__dir__)
 rescue LoadError
   puts "Configuration not found!"
   puts "You must copy the 'config.rb.template' file as 'config.rb' and edit the values inside."
