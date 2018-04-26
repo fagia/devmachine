@@ -1,8 +1,14 @@
 ---
 
-- name: Install Docker
-  when: params.apps.install.docker
+- when: params.apps.install.docker
   become: True
   block:
-    - include_role:
-        name: angstwad.docker_ubuntu
+    - name: Install pip
+      apt: name=python-pip state=latest
+    - name: Install python support for Docker
+      pip:
+        name: docker
+        state: latest
+    - name: Install Docker
+      include_role:
+        name: geerlingguy.docker

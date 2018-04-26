@@ -4,4 +4,4 @@
 - src: fagia.sublimetext
 - src: rvm_io.ruby
 - src: geerlingguy.mailhog
-- src: angstwad.docker_ubuntu
+- src: geerlingguy.docker
