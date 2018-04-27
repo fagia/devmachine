@@ -73,6 +73,8 @@ Vagrant.configure("2") do |config|
     ansible.provisioning_path = "/vagrant/ansible"
     ansible.vault_password_file = PARAMS["vault_password_file"]
     ansible.extra_vars = { vault_password_file: PARAMS["vault_password_file"] }
+    ansible.limit = "localhost"
+    ansible.inventory_path = "inventory"
   end
 
   config.vm.provision :reload

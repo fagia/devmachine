@@ -2,7 +2,7 @@
 
 - name: Provisioning
 
-  hosts: all
+  hosts: localhost
 
   tasks:
 
