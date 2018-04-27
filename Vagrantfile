@@ -18,12 +18,13 @@ if not plugins_to_install.empty?
 end
 
 begin
-  require './config'
+  require 'yaml'
+  PARAMS = YAML.load_file('config.yml')
   PARAMS["vault_password_file"] = '/tmp/vault_pass'
-  PARAMS[:vm][:name] = File.basename(__dir__)
+  PARAMS["vm"]["name"] = File.basename(__dir__)
 rescue LoadError
   puts "Configuration not found!"
-  puts "You must copy the 'config.rb.template' file as 'config.rb' and edit the values inside."
+  puts "You must copy the 'config.yml.template' file as 'config.yml' and edit the values inside."
   exit
 end
 
@@ -48,21 +49,21 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "fagia/ubuntu-elementary-de-16.04"
   config.vm.box_version = "0.0.1"
-  config.vm.hostname = PARAMS[:vm][:name]
+  config.vm.hostname = PARAMS["vm"]["name"]
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
-    vb.memory = PARAMS[:vm][:memory]
-    vb.cpus = PARAMS[:vm][:cpus]
-    vb.customize ["modifyvm", :id, "--vram", PARAMS[:vm][:vram]]
-    vb.customize ["modifyvm", :id, "--clipboard", PARAMS[:vm][:clipboard]]
+    vb.memory = PARAMS["vm"]["memory"]
+    vb.cpus = PARAMS["vm"]["cpus"]
+    vb.customize ["modifyvm", :id, "--vram", PARAMS["vm"]["vram"]]
+    vb.customize ["modifyvm", :id, "--clipboard", PARAMS["vm"]["clipboard"]]
     vb.customize ["setextradata", :id, "GUI/MiniToolBarAlignment", "Top"]
   end
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
-    config.proxy.http  = PARAMS[:proxy][:http]
-    config.proxy.https = PARAMS[:proxy][:https]
-    config.proxy.no_proxy = PARAMS[:proxy][:no_proxy]
+    config.proxy.http  = PARAMS["proxy"]["http"]
+    config.proxy.https = PARAMS["proxy"]["https"]
+    config.proxy.no_proxy = PARAMS["proxy"]["no_proxy"]
   end
 
   config.vm.provision "shell", env: {"AVPWD" => AnsibleVaultPassword.new, "AVPASSFILE" => PARAMS["vault_password_file"]}, inline: "echo $AVPWD > $AVPASSFILE"

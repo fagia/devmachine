@@ -35,12 +35,12 @@ Once finished with the installation of the programs above, open a command termin
 	git clone https://github.com/fagia/devmachine.git your-devmachine-name-here
 	cd your-devmachine-name-here
 
-Copy the file <code>config.rb.template</code> to <code>config.rb</code> and, in the copied file, fill in the configuration informations.
+Copy the file <code>config.yml.template</code> to <code>config.yml</code> and, in the copied file, fill in the configuration informations.
 
 Then:
 
 	vagrant up
 
-Hold on, this will take a while. Once the initial setup process is complete, you should be able to log into the fully provisioned development virtual machine (use the credentials that you entered in the config.rb file).
+Hold on, this will take a while. Once the initial setup process is complete, you should be able to log into the fully provisioned development virtual machine (use the credentials that you entered in the config.yml file).
 
 Happy coding!

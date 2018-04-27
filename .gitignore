@@ -6,6 +6,6 @@
 /ansible/roles/rvm_io.ruby/*
 /ansible/roles/additional/*
 /ansible/*.retry
-/config.rb
+/config.yml
 /*.log
 /.vagrant/
