@@ -6,6 +6,11 @@
 
   tasks:
 
+    - name: Including vars of config.yml into the params variable
+      include_vars:
+        file: ../config.yml
+        name: params
+
     - name: Temp hack to get right os related vars
       set_fact:
         ansible_os_family: Debian

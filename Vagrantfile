@@ -72,7 +72,6 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "playbook.yml"
     ansible.provisioning_path = "/vagrant/ansible"
     ansible.vault_password_file = PARAMS["vault_password_file"]
-    ansible.extra_vars = { params: PARAMS }
   end
 
   config.vm.provision :reload
