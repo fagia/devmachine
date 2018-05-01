@@ -18,6 +18,7 @@ Vagrant + Ansible provisioning of a development virtual machine based on Ubuntu 
 * PyCharm (2017.3.3 community edition)
 * LibreOffice (latest stable)
 * Docker (latest stable community edition)
+* Camunda Modeler 1.14.0
 * your additional roles
 * your workspace git repositories
 

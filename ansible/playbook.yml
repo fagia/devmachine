@@ -68,6 +68,7 @@
     - import_tasks: tasks/install/pycharm.yml
     - import_tasks: tasks/install/docker.yml
     - import_tasks: tasks/install/libreoffice.yml
+    - import_tasks: tasks/install/camunda/modeler.yml
 
     - name: Running additional roles
       include_role:

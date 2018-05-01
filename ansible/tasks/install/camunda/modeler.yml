@@ -1,0 +1,27 @@
+---
+
+- name: Install Camunda Modeler
+  when:
+    - params.apps.install.camunda is defined
+    - params.apps.install.camunda.modeler is defined
+    - params.apps.install.camunda.modeler
+  become: True
+  block:
+    - name: Install libgconf-2-4
+      apt: name=libgconf-2-4 state=latest
+    - name: Set fact camunda_modeler_install_dir
+      set_fact: camunda_modeler_install_dir="{{ camunda.modeler.install_dir }}/camunda-modeler/{{ camunda.modeler.version }}"
+    - name: "Check {{ camunda_modeler_install_dir }} existence"
+      stat: path="{{ camunda_modeler_install_dir }}"
+      register: camunda_modeler_install_dir_stat
+    - name: "Create {{ camunda_modeler_install_dir }} dir"
+      file:
+        path: "{{ camunda_modeler_install_dir }}"
+        state: directory
+    - name: Download Camunda Modeler
+      unarchive:
+        src: "https://camunda.org/release/camunda-modeler/{{ camunda.modeler.version }}/camunda-modeler-{{ camunda.modeler.version }}-{{ camunda.modeler.platform }}.{{ camunda.modeler.download_format }}"
+        dest: "{{ camunda_modeler_install_dir }}"
+        remote_src: yes
+        extra_opts: [--strip-components=1]
+      when: camunda_modeler_install_dir_stat.stat.exists == False

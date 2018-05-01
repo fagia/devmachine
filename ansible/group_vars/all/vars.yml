@@ -1,3 +1,10 @@
 ---
 
 wallpaper_image: "/usr/share/backgrounds/{{ ansible_nodename }}_{{ params.vm.wallpaper.width }}x{{ params.vm.wallpaper.height }}.jpg"
+
+camunda:
+  modeler:
+    version: "1.14.0"
+    platform: "linux-x64"
+    download_format: "tar.gz"
+    install_dir: "/opt"

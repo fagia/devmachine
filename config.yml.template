@@ -19,22 +19,24 @@ proxy: # proxy settings
   no_proxy: "localhost,127.0.0.1,::1" # default no_proxy settings
 apps: # applications settings
   install:
-    chrome: true
-    mariadb: true
-    dbeaver: true
-    apache: true
-    php: true
-    mailhog: true
-    filezilla: true
-    sublime: true
-    java: true
-    ruby: true
-    maven: true
-    gradle: true
-    intellij_idea: true
-    pycharm: true
-    docker: true
-    libreoffice: true
+    chrome: True
+    mariadb: True
+    dbeaver: True
+    apache: True
+    php: True
+    mailhog: True
+    filezilla: True
+    sublime: True
+    java: True
+    ruby: True
+    maven: True
+    gradle: True
+    intellij_idea: True
+    pycharm: True
+    docker: True
+    libreoffice: True
+    camunda:
+      modeler: True
 roles: [] # optional list of additional roles to be executed, eg: ["https://a-roles-repo/role1.git"]
 workspace:
   gitrepos: [] # optional list of git repositories to be initialized in the workspace directory, eg: ["https://a-git-repo/repo1.git"]
