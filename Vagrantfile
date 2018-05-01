@@ -70,6 +70,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "playbook.yml"
+    ansible.install_mode = "pip"
     ansible.provisioning_path = "/vagrant/ansible"
     ansible.vault_password_file = PARAMS["vault_password_file"]
     ansible.extra_vars = { vault_password_file: PARAMS["vault_password_file"] }
