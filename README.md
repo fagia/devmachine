@@ -5,7 +5,7 @@ Vagrant + Ansible provisioning of a development virtual machine based on Ubuntu 
 * Google Chrome browser (latest stable)
 * MariaDB (latest stable available for Ubuntu Xenial)
 * Apache HTTPD (latest stable)
-* PHP (latest stable)
+* PHP (latest stable or older, depending on config.yml setting)
 * MailHog 0.2.1
 * Filezilla (latest stable)
 * Sublime Text 3 (latest stable)

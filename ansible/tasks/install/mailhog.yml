@@ -31,7 +31,7 @@
       set_fact:
         necessary_menu_items: "{{ necessary_menu_items }} + [ 'mailhog' ]"
   - name: Configure MailHog for PHP
-    when: params.apps.install.php
+    when: params.apps.php.install
     block:
     - name: Retrieve php.ini file paths
       find:

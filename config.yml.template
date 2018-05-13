@@ -18,12 +18,14 @@ proxy: # proxy settings
   https: "" # leave empty string if there is no proxy
   no_proxy: "localhost,127.0.0.1,::1" # default no_proxy settings
 apps: # applications settings
+  php:
+    install: True
+    version: "" # leave empty string to install latest version
   install:
     chrome: True
     mariadb: True
     dbeaver: True
     apache: True
-    php: True
     mailhog: True
     filezilla: True
     sublime: True

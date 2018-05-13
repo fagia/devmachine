@@ -48,14 +48,14 @@
     - import_tasks: tasks/install/php.yml
 
     - name: Install PHP extensions for MariaDB
-      apt: name=php-mysql state=latest
+      apt: name="php{{ params.apps.php.version }}-mysql" state=latest allow_unauthenticated=yes
       become: True
-      when: params.apps.install.mariadb and params.apps.install.php
+      when: params.apps.install.mariadb and params.apps.php.install
 
     - name: Install Apache extensions for PHP
-      apt: name=libapache2-mod-php state=latest
+      apt: name="libapache2-mod-php{{ params.apps.php.version }}" state=latest allow_unauthenticated=yes
       become: True
-      when: params.apps.install.apache and params.apps.install.php
+      when: params.apps.install.apache and params.apps.php.install
 
     - import_tasks: tasks/install/mailhog.yml
     - import_tasks: tasks/install/filezilla.yml
