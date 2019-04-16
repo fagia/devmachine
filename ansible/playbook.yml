@@ -33,6 +33,7 @@
       apt:
         update_cache: yes
         upgrade: dist
+        allow_unauthenticated: yes
       become: True
 
     - import_tasks: tasks/add-roles.yml
