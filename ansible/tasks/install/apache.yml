@@ -12,11 +12,12 @@
   become: True
   block:
     - name: Install Apache HTTPD, OpenSSL and pip
-      apt: name={{ item }} state=latest
-      with_items:
-        - apache2
-        - openssl
-        - python-pip
+      apt:
+        state: latest
+        name:
+          - apache2
+          - openssl
+          - python-pip
     - name: Enable modules
       file:
         src: "/etc/apache2/mods-available/{{ item }}"

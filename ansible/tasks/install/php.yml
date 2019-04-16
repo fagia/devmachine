@@ -9,9 +9,11 @@
         repo: "deb http://ppa.launchpad.net/ondrej/php/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} main"
       when: params.apps.php.version != ""
     - name: Install PHP packages
-      apt: name={{ item }} state=latest allow_unauthenticated=yes
-      with_items:
-        - "php{{ params.apps.php.version }}"
-        - "php{{ params.apps.php.version }}-mcrypt"
-        - "php{{ params.apps.php.version }}-gd"
-        - "php{{ params.apps.php.version }}-xml"
+      apt:
+        state: latest
+        allow_unauthenticated: yes
+        name:
+          - "php{{ params.apps.php.version }}"
+          - "php{{ params.apps.php.version }}-mcrypt"
+          - "php{{ params.apps.php.version }}-gd"
+          - "php{{ params.apps.php.version }}-xml"

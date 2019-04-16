@@ -74,7 +74,6 @@
     - name: Running additional roles
       include_role:
         name: "roles/additional/{{ item.rsplit('/', 1)[1].rsplit('.git')[0] }}"
-        private: True
       with_items: "{{ params.roles }}"
       when: ( params.roles|length > 0 ) and ( ansible_version.full is version_compare('2.5.0.0', '>') )
 
@@ -92,16 +91,18 @@
       become_user: '{{ params.user.username }}'
 
     - name: Remove unecessary applications
-      apt: name={{ item }} state=absent purge=yes
-      with_items:
-        - pantheon-mail
-        - audience
-        - noise
-        - byobu
-        - epiphany-browser
-        - epiphany
-        - appcenter
-        - maya-calendar
+      apt:
+        state: absent
+        purge: yes
+        name:
+          - pantheon-mail
+          - audience
+          - noise
+          - byobu
+          - epiphany-browser
+          - epiphany
+          - appcenter
+          - maya-calendar
       become: True
 
     - name: Clean apt cache
