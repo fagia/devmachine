@@ -3,7 +3,7 @@
 /ansible/roles/tersmitten.*
 /ansible/roles/geerlingguy.*
 /ansible/roles/fagia.sublimetext/*
-/ansible/roles/rvm_io.ruby/*
+/ansible/roles/rvm.ruby/*
 /ansible/roles/additional/*
 /ansible/*.retry
 /config.yml

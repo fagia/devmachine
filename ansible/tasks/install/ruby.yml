@@ -2,7 +2,7 @@
 
 - name: Install Ruby
   include_role:
-    name: rvm_io.ruby
+    name: rvm.ruby
   vars:
     rvm1_rubies: ['ruby-2.3.1']
     rvm1_user: '{{ params.user.username }}'

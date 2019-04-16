@@ -2,6 +2,6 @@
 
 - src: gantsign.intellij
 - src: fagia.sublimetext
-- src: rvm_io.ruby
+- src: rvm.ruby
 - src: geerlingguy.mailhog
 - src: geerlingguy.docker
